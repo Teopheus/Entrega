@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lançamento de Entrega - Tartaruga Cometa</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5; /* Fundo claro terroso */
+            color: #4f4f4f; /* Texto escuro terroso */
+            margin: 0;
+            padding: 0;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        .container {
+            width: 80%;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #fff; /* Branco para o conteúdo */
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            margin-top: 20px;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        h1 {
+            color: #6d4c41; /* Cor terrosa do título */
+            text-align: center;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            transition: color 0.3s;
+        }
+
+        .tartaruga-logo {
+            width: 40px;
+            height: 40px;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+            color: #6d4c41; /* Cor terrosa dos rótulos */
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #bfae9f; /* Cor terrosa clara para bordas */
+            border-radius: 4px;
+            box-sizing: border-box;
+            background-color: #faf3e0; /* Fundo claro para inputs */
+            color: #4f4f4f; /* Cor do texto nos inputs */
+        }
+
+        .form-group textarea {
+            resize: vertical;
+        }
+
+        .form-group button {
+            background-color: #8d6e63; /* Cor terrosa para o botão */
+            color: #fff;
+            border: none;
+            padding: 10px 15px;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 4px;
+            transition: background-color 0.3s;
+        }
+
+        .form-group button:hover {
+            background-color: #6d4c41; /* Escurecimento no hover */
+        }
+
+        .form-group .info {
+            color: #8d6e63; /* Cor terrosa clara para informações */
+            font-size: 14px;
+            margin-top: 5px;
+        }
+
+        .form-group .info span {
+            color: #6d4c41; /* Cor terrosa escura para destaques */
+        }
+
+        .section-title {
+            font-size: 18px;
+            color: #6d4c41; /* Cor terrosa para títulos de seções */
+            margin-bottom: 10px;
+            border-bottom: 2px solid #8d6e63; /* Linha de destaque terrosa */
+            padding-bottom: 5px;
+        }
+
+        .success-message {
+            color: #4caf50; /* Verde para mensagens de sucesso */
+            font-size: 16px;
+            margin-bottom: 20px;
+        }
+
+        .theme-toggle {
+            position: fixed;
+            top: 10px;
+            left: 10px;
+            background-color: #fff;
+            border: none;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+            transition: background-color 0.3s, box-shadow 0.3s;
+        }
+
+        .theme-toggle img {
+            width: 24px;
+            height: 24px;
+            transition: opacity 0.3s;
+        }
+
+        .dark-mode {
+            background-color: #3e2723; /* Fundo escuro terroso */
+            color: #e0e0e0; /* Texto claro para contraste */
+        }
+
+        .dark-mode .container {
+            background-color: #4e342e; /* Fundo do conteúdo escuro */
+            color: #e0e0e0; /* Texto claro */
+        }
+
+        .dark-mode h1 {
+            color: #e0e0e0; /* Título claro no modo escuro */
+        }
+
+        .dark-mode .form-group input,
+        .dark-mode .form-group select,
+        .dark-mode .form-group textarea {
+            background-color: #6d4c41; /* Fundo escuro terroso para inputs */
+            color: #e0e0e0; /* Texto claro nos inputs */
+            border-color: #8d6e63; /* Borda mais clara no modo escuro */
+        }
+
+        .dark-mode .form-group button {
+            background-color: #8d6e63; /* Botão escuro terroso */
+        }
+
+        .dark-mode .section-title {
+            border-bottom: 2px solid #6d4c41; /* Linha de destaque escura */
+        }
+
+        .dark-mode .success-message {
+            color: #66bb6a; /* Verde claro para mensagens de sucesso */
+        }
+
+        .dark-mode .theme-toggle {
+            background-color: #3e2723; /* Fundo do botão de alternar tema */
+        }
+
+        .dark-mode .theme-toggle img {
+            opacity: 0.8;
+        }
+    </style>
+</head>
+
+<body>
+    <button class="theme-toggle" onclick="toggleTheme()">
+        <img src="https://img.icons8.com/ios-filled/50/ffffff/sun--v1.png" alt="Tema Claro" id="theme-icon">
+    </button>
+
+    <div class="container">
+        <h1>
+            Lançamento de Entrega
+            <img src="https://img.icons8.com/ios-filled/50/6d4c41/turtle.png" alt="Logo Tartaruga" class="tartaruga-logo">
+        </h1>
+        
+        <!-- Mensagem de sucesso -->
+        <div th:if="${mensagem}" class="success-message" th:text="${mensagem}"></div>
+        
+        <form action="/enviar-entrega" method="post">
+            <!-- Dados do Remetente -->
+            <div class="section-title">Dados do Remetente</div>
+            <div class="form-group">
+                <label for="remetente-cpf-cnpj">CNPJ/CPF do Remetente</label>
+                <input type="text" id="remetente-cpf-cnpj" name="remetente-cpf-cnpj" placeholder="CNPJ ou CPF" required>
+            </div>
+            <div class="form-group">
+                <label for="remetente-nome">Nome/Razão Social do Remetente</label>
+                <input type="text" id="remetente-nome" name="remetente-nome" placeholder="Nome ou Razão Social" required>
+            </div>
+            <div class="form-group">
+                <label for="remetente-endereco">Endereço do Remetente</label>
+                <input type="text" id="remetente-endereco" name="remetente-endereco" placeholder="Endereço completo" required>
+            </div>
+
+            <!-- Dados do Destinatário -->
+            <div class="section-title">Dados do Destinatário</div>
+            <div class="form-group">
+                <label for="destinatario-cpf-cnpj">CNPJ/CPF do Destinatário</label>
+                <input type="text" id="destinatario-cpf-cnpj" name="destinatario-cpf-cnpj" placeholder="CNPJ ou CPF" required>
+            </div>
+            <div class="form-group">
+                <label for="destinatario-nome">Nome/Razão Social do Destinatário</label>
+                <input type="text" id="destinatario-nome" name="destinatario-nome" placeholder="Nome ou Razão Social" required>
+            </div>
+            <div class="form-group">
+                <label for="destinatario-endereco">Endereço do Destinatário</label>
+                <input type="text" id="destinatario-endereco" name="destinatario-endereco" placeholder="Endereço completo" required>
+            </div>
+
+            <!-- Dados dos Produtos -->
+            <div class="section-title">Dados dos Produtos</div>
+            <div class="form-group">
+                <label for="produto-nome">Nome do Produto</label>
+                <input type="text" id="produto-nome" name="produto-nome" placeholder="Nome do Produto" required>
+            </div>
+            <div class="form-group">
+                <label for="produto-peso">Peso do Produto (kg)</label>
+                <input type="number" id="produto-peso" name="produto-peso" step="0.01" placeholder="Peso em kg" required>
+            </div>
+            <div class="form-group">
+                <label for="produto-volume">Volume do Produto (m³)</label>
+                <input type="number" id="produto-volume" name="produto-volume" step="0.01" placeholder="Volume em m³" required>
+            </div>
+            <div class="form-group">
+                <label for="produto-valor">Valor do Produto (R$)</label>
+                <input type="number" id="produto-valor" name="produto-valor" step="0.01" placeholder="Valor em R$" required>
+            </div>
+
+            <div class="form-group">
+                <button type="submit">Enviar Entrega</button>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        function toggleTheme() {
+            const body = document.body;
+            const themeIcon = document.getElementById('theme-icon');
+            body.classList.toggle('dark-mode');
+
+            if (body.classList.contains('dark-mode')) {
+                themeIcon.src = 'https://img.icons8.com/ios-filled/50/ffffff/moon.png'; // Ícone de lua para o tema escuro
+            } else {
+                themeIcon.src = 'https://img.icons8.com/ios-filled/50/ffffff/sun--v1.png'; // Ícone de sol para o tema claro
+            }
+        }
+    </script>
+</body>
+
+</html>
