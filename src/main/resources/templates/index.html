@@ -8,8 +8,8 @@
     <style>
         body {
             font-family: Arial, sans-serif;
-            background-color: #f5f5f5; /* Fundo claro terroso */
-            color: #4f4f4f; /* Texto escuro terroso */
+            background-color: #f5f5f5; /* Fundo claro */
+            color: #4f4f4f; /* Texto escuro */
             margin: 0;
             padding: 0;
             transition: background-color 0.3s, color 0.3s;
@@ -40,6 +40,7 @@
         .tartaruga-logo {
             width: 40px;
             height: 40px;
+            margin-left: auto; /* Adiciona margem automática para empurrar o logo para a direita */
         }
 
         .form-group {
@@ -132,12 +133,12 @@
         }
 
         .dark-mode {
-            background-color: #3e2723; /* Fundo escuro terroso */
-            color: #e0e0e0; /* Texto claro para contraste */
+            background-color: #121212; /* Fundo escuro padrão */
+            color: #e0e0e0; /* Texto claro */
         }
 
         .dark-mode .container {
-            background-color: #4e342e; /* Fundo do conteúdo escuro */
+            background-color: #1e1e1e; /* Fundo do conteúdo escuro */
             color: #e0e0e0; /* Texto claro */
         }
 
@@ -148,17 +149,17 @@
         .dark-mode .form-group input,
         .dark-mode .form-group select,
         .dark-mode .form-group textarea {
-            background-color: #6d4c41; /* Fundo escuro terroso para inputs */
+            background-color: #333; /* Fundo escuro para inputs */
             color: #e0e0e0; /* Texto claro nos inputs */
-            border-color: #8d6e63; /* Borda mais clara no modo escuro */
+            border-color: #555; /* Borda mais clara no modo escuro */
         }
 
         .dark-mode .form-group button {
-            background-color: #8d6e63; /* Botão escuro terroso */
+            background-color: #555; /* Botão escuro */
         }
 
         .dark-mode .section-title {
-            border-bottom: 2px solid #6d4c41; /* Linha de destaque escura */
+            border-bottom: 2px solid #555; /* Linha de destaque escura */
         }
 
         .dark-mode .success-message {
@@ -166,7 +167,7 @@
         }
 
         .dark-mode .theme-toggle {
-            background-color: #3e2723; /* Fundo do botão de alternar tema */
+            background-color: #333; /* Fundo do botão de alternar tema */
         }
 
         .dark-mode .theme-toggle img {
