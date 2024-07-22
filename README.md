@@ -39,3 +39,5 @@ Você pode alternar entre o tema claro e o tema escuro clicando no botão de tem
 
 ### Contribuições
 Sinta-se à vontade para enviar pull requests e abrir issues para quaisquer melhorias ou correções de bugs.
+
+Link para download do executável está no RELEASE.
