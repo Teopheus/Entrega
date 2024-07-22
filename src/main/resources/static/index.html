@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tartaruga Cometa - Entregas</title>
+</head>
+<body>
+    <h1>Cadastro de Entregas</h1>
+    <form id="entregaForm">
+        <fieldset>
+            <legend>Remetente</legend>
+            <label for="remetenteCpfCnpj">CNPJ/CPF:</label>
+            <input type="text" id="remetenteCpfCnpj" name="remetenteCpfCnpj"><br>
+            <label for="remetenteNome">Nome/Razão Social:</label>
+            <input type="text" id="remetenteNome" name="remetenteNome"><br>
+            <label for="remetenteEndereco">Endereço:</label>
+            <input type="text" id="remetenteEndereco" name="remetenteEndereco"><br>
+        </fieldset>
+        <fieldset>
+            <legend>Destinatário</legend>
+            <label for="destinatarioCpfCnpj">CNPJ/CPF:</label>
+            <input type="text" id="destinatarioCpfCnpj" name="destinatarioCpfCnpj"><br>
+            <label for="destinatarioNome">Nome/Razão Social:</label>
+            <input type="text" id="destinatarioNome" name="destinatarioNome"><br>
+            <label for="destinatarioEndereco">Endereço:</label>
+            <input type="text" id="destinatarioEndereco" name="destinatarioEndereco"><br>
+        </fieldset>
+        <fieldset>
+            <legend>Produto</legend>
+            <label for="produtoNome">Nome:</label>
+            <input type="text" id="produtoNome" name="produtoNome"><br>
+            <label for="produtoPeso">Peso:</label>
+            <input type="text" id="produtoPeso" name="produtoPeso"><br>
+            <label for="produtoVolume">Volume:</label>
+            <input type="text" id="produtoVolume" name="produtoVolume"><br>
+            <label for="produtoValor">Valor:</label>
+            <input type="text" id="produtoValor" name="produtoValor"><br>
+        </fieldset>
+        <button type="button" onclick="cadastrarEntrega()">Cadastrar Entrega</button>
+    </form>
+    <script>
+        function cadastrarEntrega() {
+            const entrega = {
+                remetente: {
+                    cpfCnpj: document.getElementById('remetenteCpfCnpj').value,
+                    nome: document.getElementById('remetenteNome').value,
+                    endereco: document.getElementById('remetenteEndereco').value,
+                },
+                destinatario: {
+                    cpfCnpj: document.getElementById('destinatarioCpfCnpj').value,
+                    nome: document.getElementById('destinatarioNome').value,
+                    endereco: document.getElementById('destinatarioEndereco').value,
+                },
+                produtos: [{
+                    nome: document.getElementById('produtoNome').value,
+                    peso: document.getElementById('produtoPeso').value,
+                    volume: document.getElementById('produtoVolume').value,
+                    valor: document.getElementById('produtoValor').value,
+                }],
+                realizada: false
+            };
+
+            fetch('/entregas', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(entrega)
+            }).then(response => response.json())
+              .then(data => alert('Entrega cadastrada com sucesso!'))
+              .catch(error => console.error('Erro:', error));
+        }
+    </script>
+</body>
+</html>
